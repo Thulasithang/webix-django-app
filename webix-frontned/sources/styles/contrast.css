@@ -1,0 +1,96 @@
+/* General styles */
+body {
+    background-color: #000;  /* High contrast background */
+    color: #fff;  /* High contrast text */
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Webix Components */
+.webix_list, .webix_sidebar, .webix_view {
+    background-color: #111 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+/* Sidebar */
+.webix_sidebar .webix_tree_item {
+    color: #fff !important;
+}
+
+.webix_sidebar .webix_selected {
+    background-color: #ffcc00 !important; /* High contrast selection */
+    color: #000 !important;
+}
+
+/* Buttons */
+.webix_button {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+    font-weight: bold;
+    border: 2px solid #fff;
+}
+
+.webix_button:hover {
+    background-color: #ffa500 !important;
+}
+
+/* Input fields */
+.webix_input input {
+    background-color: #222 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+/* DataTable */
+.webix_dtable {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.webix_dtable .webix_column {
+    background-color: #222 !important;
+    color: #fff !important;
+}
+
+.webix_dtable .webix_row_select {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+}
+
+/* List */
+.webix_list .webix_list_item {
+    background-color: #111 !important;
+    color: #fff !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.webix_list .webix_selected {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+}
+
+/* Form Labels */
+.webix_label {
+    color: #ffcc00 !important;
+}
+
+/* Checkbox & Radio */
+.webix_checkbox .webix_view, .webix_radio .webix_view {
+    background-color: #222 !important;
+    color: #fff !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #222;
+}
+::-webkit-scrollbar-thumb {
+    background: #ffcc00;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffa500;
+}
