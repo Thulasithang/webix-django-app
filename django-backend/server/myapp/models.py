@@ -9,10 +9,10 @@ class UserProfile(AbstractBaseUser):
     last_name = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
-        return self.username
+        return self.user.username
     
 class UserPreferences(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='preferences')
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE, related_name='preferences')
     theme = models.CharField(max_length=50, default='light')
     language = models.CharField(max_length=50, default='en')
     email_notifications = models.BooleanField(default=True)
@@ -21,5 +21,5 @@ class UserPreferences(models.Model):
     font_style = models.CharField(max_length=50, default='Arial')
     font_size = models.IntegerField(default=12)
 
-    def __str__(self):
-        return f"{self.user.username}'s Preferences"
+    # def __str__(self):
+    #     return {}

@@ -21,12 +21,17 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = '__all__'
+    
+
 
 
 class UserPreferencesSerializer(serializers.ModelSerializer):
     """
     Serializer for the UserPreferences model.
     """
+    # user = UserProfileSerializer(read_only=True)
     class Meta:
         model = UserPreferences
-        fields = ['user', 'theme', 'language', 'email_notifications', 'push_notifications', 'notification_frequency', 'font_style', 'font_size']
+        # fields = ['user', 'theme', 'language', 'email_notifications', 'push_notifications', 'notification_frequency', 'font_style', 'font_size']
+
+        fields = '__all__'
