@@ -5,15 +5,6 @@ export const loginView = () => {
         console.log("form", form);
         // if (form.validate()) {
           let values = form.getValues();
-        //   if (values.username === "admin" && values.password === "password") {
-        //     webix.message("Login successful!");
-        //     webix.storage.local.put("user", values.username);
-        //     window.location.replace("#!/top/dash");
-        //     // this.app.refresh(); // Refresh the app to reflect login status
-        //   } else {
-        //     webix.message({ type: "error", text: "Invalid credentials" });
-        //   }
-        
         webix.ajax()
         .headers({
             "Content-Type": "application/json",
@@ -29,8 +20,21 @@ export const loginView = () => {
             if (data.token) {
                 webix.message("Login successful!");
                 webix.storage.local.put("user", {
+                    id: data.user_preferences.user,
                     username: values.username,
+                    email: data.user.email,
+                    first_name: data.user.first_name,
+                    last_name: data.user.last_name,
                     token: data.token,
+                });
+                webix.storage.local.put("user_preferences", {
+                  theme: data.user_preferences.theme === "dark" || data.user_preferences.theme === "webix_dark" ? "webix_dark" : "webix_light",
+                  email_notifications: data.user_preferences.email_notifications,
+                  push_notifications: data.user_preferences.push_notifications,
+                  notification_frequency: data.user_preferences.notification_frequency,
+                  font_style: data.user_preferences.font_style,
+                  font_size: data.user_preferences.font_size,
+                  language: data.user_preferences.language,
                 });
                 window.location.replace("#!/top/dash");
                 // this.app.refresh(); // Refresh the app to reflect login status

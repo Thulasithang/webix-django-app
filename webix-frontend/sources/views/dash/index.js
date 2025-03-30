@@ -11,7 +11,7 @@ export default class TopView extends JetView {
       rows: [
         {
           view: "toolbar",
-          cols: [{ view: "label", label: "Manage Data" }],
+          cols: [{ view: "label", label: `Hello ${user.username} !!!` }],
         },
         {
           view: "multiview",
