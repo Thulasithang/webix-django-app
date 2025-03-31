@@ -76,9 +76,8 @@ export const loginView = () => {
     id: "loginView",
     // padding: 20,
     width: 400,
-    autoWidth: true,
-    responsive: true,
-    fillspace: true,
+    // responsive: true,
+    // fillspace: true,
     css: "webix_login_form",
     rules: {
       $all: webix.rules.isNotEmpty,
@@ -89,6 +88,7 @@ export const loginView = () => {
       labelPosition: "top",
       labelHeight: 100,
       css: { fontSize: "24px !important", color: "#fff" },
+      // height: 70,
     },
     // on: {
     //   onAfterValidation: function (result, value) {
@@ -134,6 +134,10 @@ export const loginView = () => {
               console.log("login clicked");
               doLogin();
             },
+            attributes: {
+              "aria-label": "Login",
+              "aria-describedby": "loginView",
+            }
           },
         ],
       },

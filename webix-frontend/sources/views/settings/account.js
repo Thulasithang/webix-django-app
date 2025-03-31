@@ -38,10 +38,9 @@ function saveSettings(user_id) {
     });
 }
 
-const accountSettings = (theme, user) => ({
+const accountSettings = (user) => ({
   view: "form",
   id: "accountForm",
-  // css: theme === "webix_dark" ? "dark-style" : "light-style",
   elementsConfig: {
     labelWidth: 200,
     labelAlign: "left",
@@ -85,17 +84,16 @@ const accountSettings = (theme, user) => ({
 
 export default class AccountsView extends JetView {
   config() {
-    // const theme = webix.storage.local.get("theme") || "default";
-    const theme = webix.storage.local.get("user_preferences").theme;
     const user = webix.storage.local.get("user");
-    console.log("user: ", user);
     if (!user) {
-      webix.message("Please log in first.");
+      webix.message({type:"error", text:"Please log in first."});
       setTimeout(() => {
         window.location.href = "#!/top/dash";
-        window.location.reload();
+        // window.location.reload();
       });
     }
+    console.log("user: ", user);
+    
     return {
       template: "Account settings",
       responsive: true,
@@ -105,9 +103,8 @@ export default class AccountsView extends JetView {
         {
           view: "toolbar",
           cols: [{ view: "label", label: "Notification Settings" }],
-          // css: theme,
         },
-        accountSettings(theme, user)],
+        accountSettings(user)],
     };
   }
 }

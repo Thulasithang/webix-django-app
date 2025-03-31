@@ -27,6 +27,34 @@ const themeSettings = (theme, toggleTheme) => ({
         {},
       ],
     });
+  
+const fontStyleSettings = (font_style, toggleFontStyle) => ({
+  view: "layout",
+  id: "fontstyle",
+  responsive: true,
+  type: "space",
+  rows: [
+    {
+      localId: "font_style",
+      name: "font_style",
+      optionWidth: 120,
+      view: "segmented",
+      label: "Font Style",
+      value: font_style,
+      options: [
+        { id: "Arial", value: "Arial" },
+        { id: "Courier New", value: "Courier New" },
+        { id: "Georgia", value: "Georgia" },
+        { id: "Times New Roman", value: "Times New Roman" },
+        { id: "Verdana", value: "Verdana" },
+      ],
+      on: {
+        onChange: (newFontStyle) => toggleFontStyle(newFontStyle),
+      },
+    },
+    {},
+  ],
+});
 
 export default class ThemeView extends JetView {
   config() {
@@ -35,7 +63,7 @@ export default class ThemeView extends JetView {
 
     const toggleTheme = (newTheme) => {
       console.log("Switching theme to:", newTheme);
-      webix.storage.local.put("theme", newTheme);
+      // webix.storage.local.put("theme", newTheme);
       this.app.config.theme = newTheme;
 
       // Apply the theme dynamically
@@ -55,6 +83,40 @@ export default class ThemeView extends JetView {
 
       webix.delay(() => this.app.refresh(), null, null, 100);
     };
+
+    const font_style = this.app.config.font_style;
+    console.log("font_style from theme", font_style);
+
+    const toggleFontStyle = (newFontStyle) => {
+      console.log("Switching font style to:", newFontStyle);
+      // webix.storage.local.put("font_style", newFontStyle);
+      this.app.config.font_style = newFontStyle;
+
+      let fontLink = document.getElementById("fontStylesheet");
+      if (!fontLink) {
+        fontLink = document.createElement("link");
+        fontLink.id = "fontStylesheet";
+        fontLink.rel = "stylesheet";
+        fontLink.type = "text/css";
+        document.head.appendChild(fontLink);
+      }
+      fontLink.href = 
+        newFontStyle === "Arial"
+          ? "https://fonts.googleapis.com/css2?family=Arial:wght@400&display=swap"
+          : newFontStyle === "Courier New"
+          ? "https://fonts.googleapis.com/css2?family=Courier+New:wght@400&display=swap"
+          : newFontStyle === "Georgia"
+          ? "https://fonts.googleapis.com/css2?family=Georgia:wght@400&display=swap"
+          : newFontStyle === "Times New Roman"
+          ? "https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400&display=swap"
+          : "https://fonts.googleapis.com/css2?family=Verdana:wght@400&display=swap";
+      // Apply the font style dynamically
+      document.body.style.fontFamily = `"${newFontStyle}", sans-serif`;
+
+
+
+      webix.delay(() => this.app.refresh(), null, null, 100);
+    };
     
     return {
       view: "layout",
@@ -67,6 +129,19 @@ export default class ThemeView extends JetView {
           cols: [{ view: "label", label: "Theme Settings" }],
         },
         themeSettings(theme, toggleTheme),
+        fontStyleSettings(font_style, toggleFontStyle),
+        {
+          view: "button",
+          value: "Save",
+          css: "webix_primary",
+          click: () => {
+            webix.message("Settings saved successfully!");
+            // Save the theme and font style to local storage or server if needed
+            // webix.storage.local.put("theme", theme);
+            // webix.storage.local.put("font_style", font_style);
+          },
+        },
+        {},
       ],
     };
   }

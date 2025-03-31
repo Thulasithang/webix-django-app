@@ -35,11 +35,12 @@ export const signupView = () => {
         } else {
             webix.message({ type: "error", text: "Please fill all required fields" });
         }
-      }
+      };
     return {
       id: "signupView",
       localId: "signupView",
       view: "form",
+      css: "webix_login_form",
       width: 400,
       elements: [
         {

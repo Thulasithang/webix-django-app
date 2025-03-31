@@ -18,7 +18,18 @@ export default class TopView extends JetView {
             $$("top:sidebar").toggle();
           },
         },
-        { view: "button", value: _("hello"), width: 200 },
+        {
+          view: "button",
+          value: _("hello"),
+          width: 200,
+          click: () => {
+            webix.message(_("hello"));
+          },
+          attributes: {
+            "aria-label": _("hello"),
+            role: "button",
+          },
+        },
         {},
         {
           view: "segmented",
@@ -48,6 +59,7 @@ export default class TopView extends JetView {
         { value: "Dashboard", id: "dash", icon: "mdi mdi-view-dashboard" },
         { value: "Data", id: "data", icon: "mdi mdi-table" },
         {
+          // select: true,
           value: "Settings",
           id: "settings",
           icon: "mdi mdi-cog",
@@ -116,7 +128,7 @@ export default class TopView extends JetView {
               // click: () => this.showLoginWindow(),
               click: function () {
                 window.location.href = "#!/auth";
-              }
+              },
             },
       ],
     };
@@ -125,7 +137,7 @@ export default class TopView extends JetView {
       type: "clean",
       paddingX: 5,
       responsive: true,
-      css:"#5A5A5A !important",
+      css: "#5A5A5A !important",
       cols: [
         {
           paddingX: 5,
@@ -133,7 +145,7 @@ export default class TopView extends JetView {
           rows: [{ css: theme, rows: [sidebar] }],
         },
         {
-          css:"#5A5A5A !important",
+          css: "#5A5A5A !important",
           type: "wide",
           paddingY: 10,
           paddingX: 5,
@@ -152,7 +164,48 @@ export default class TopView extends JetView {
     this.userPopup = this.ui(UserPopupView);
     // this.use(plugins.Menu, "top:menu");
     this.use(plugins.Menu, "top:sidebar");
+
+    const sidebar = $$("top:sidebar");
+    const user = webix.storage.local.get("user");
+    const sidebar_settings = $$("settings");
+    const sidebar_settings_list = user ? ["account", "notifications", "theme", "privacy"] : ["theme"];
+
+  // Hotkey for Arrow Down (↓) - Moves selection down
+  webix.UIManager.addHotKey("down", () => {
+    const selected = sidebar.getSelectedId();
+    // if (!user) {
+    //   const selected_settings = sidebar_settings.getSelectedId();
+    console.log("selected: ", selected);
+    if (selected) {
+      const nextId = sidebar.getNextId(selected);
+      sidebar.select(nextId);
+      if (nextId && sidebar_settings_list.includes(nextId)) {
+        sidebar_settings.select(nextId);
+      }
+    }
+  });
+
+  // Hotkey for Arrow Up (↑) - Moves selection up
+  webix.UIManager.addHotKey("up", () => {
+    const selected = sidebar.getSelectedId();
+    if (selected) {
+      const prevId = sidebar.getPrevId(selected);
+      if (prevId) sidebar.select(prevId);
+    }
+  });
+
+  webix.UIManager.addHotKey("right", () => {
+    const selected = sidebar.getSelectedId();
+    if (selected && sidebar.getItem(selected).data) {
+      console.log("selected from here: ", selected);
+      sidebar.open(selected);
+    }
+  });
+
+
   }
+
+  
 
   openAuthModal() {
     if (!$$("authModal")) {

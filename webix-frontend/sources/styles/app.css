@@ -63,24 +63,6 @@
 	color:green;
 }
 
-
-
-/*login form*/
-.webix_login_form{
-    /* width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f8f9fa; */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.webix_login_form .webix_inp_top_label{
-    font-size: 18px;
-    /* color: #333; */
-    margin-bottom: 10px;
-}
-
 /* .webix_login_form .webix_el_button{
     background-color: #007bff;
     color: #fff;
@@ -170,17 +152,6 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     animation: fadeIn 2s ease-in-out;
 }
-
-
-
-/* For any form elements or inputs to ensure they resize appropriately */
-/* .auth-container input,
-.auth-container button {
-    width: 100%;
-    max-width: 250px;
-    margin-bottom: 10px;
-} */
-
 
 .register-link {
     text-decoration: none;

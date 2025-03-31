@@ -6,30 +6,27 @@ export default class AuthView extends JetView {
   config() {
     return {
       type: "space",
-      view: "layout",
+      // view: "layout",
       css: "auth-container",
       cols: [
-        {height: 40},
+        // { height: 40, view: "resizer", gravity: 1 },
         {
           rows: [
             {},
-            // {
-            //     height: 50,
-            //   view: "toolbar",
-            //   cols: [{ view: "label", label: "Manage Data" }],
-            // },
             {
+              // gravity: 5,
               view: "multiview",
               id: "dataMultiview",
+              css: "webix_auth_multiview",
               animate: { type: "slide", subtype: "in" },
               responsive: true,
-
+    
               cells: [loginView(), signupView()],
             },
             {},
           ],
         },
-        {}
+        // {},
       ],
     };
   }
