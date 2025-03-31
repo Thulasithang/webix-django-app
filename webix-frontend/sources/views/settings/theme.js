@@ -6,7 +6,6 @@ const themeSettings = (theme, toggleTheme) => ({
       id: "themesettings",
       responsive: true,
       type: "space",
-      css: theme === "webix_dark" ? "dark-style" : "light-style",
       rows: [
         {
           localId: "skin",
@@ -14,13 +13,12 @@ const themeSettings = (theme, toggleTheme) => ({
           optionWidth: 120,
           view: "segmented",
           label: "Theme",
-          css: theme,
           value: theme,
           options: [
-            { id: "webix_light", value: "Default" },
+            { id: "light", value: "Default" },
             // { id:"flat-shady", value:"Shady" },
-            { id: "compact-default", value: "Compact" },
-            { id: "webix_dark", value: "Dark" },
+            { id: "contrast", value: "Compact" },
+            { id: "dark", value: "Dark" },
           ],
           on: {
             onChange: (newTheme) => toggleTheme(newTheme),
@@ -37,18 +35,25 @@ export default class ThemeView extends JetView {
 
     const toggleTheme = (newTheme) => {
       console.log("Switching theme to:", newTheme);
-    
       webix.storage.local.put("theme", newTheme);
       this.app.config.theme = newTheme;
-    
-      webix.delay(
-        () => {
-          this.app.refresh(); // Refreshes the app with new theme
-        },
-        null,
-        null,
-        100
-      );
+
+      // Apply the theme dynamically
+      let themeLink = document.getElementById("themeStylesheet");
+
+      if (!themeLink) {
+        themeLink = document.createElement("link");
+        themeLink.id = "themeStylesheet";
+        themeLink.rel = "stylesheet";
+        document.head.appendChild(themeLink);
+      }
+
+      themeLink.href =
+        newTheme === "contrast"
+          ? "https://cdn.webix.com/edge/skins/contrast.css"
+          : `https://cdn.webix.com/edge/skins/${newTheme}.css`;
+
+      webix.delay(() => this.app.refresh(), null, null, 100);
     };
     
     return {
@@ -60,7 +65,6 @@ export default class ThemeView extends JetView {
         {
           view: "toolbar",
           cols: [{ view: "label", label: "Theme Settings" }],
-          css: theme,
         },
         themeSettings(theme, toggleTheme),
       ],

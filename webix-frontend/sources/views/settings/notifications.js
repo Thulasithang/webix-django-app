@@ -9,10 +9,9 @@ function saveSettings(formId) {
     }
 }
 
-const notificationSettings = (theme) => ({
+const notificationSettings = () => ({
   view: "form",
   id: "notificationForm",
-  css: theme === "webix_dark" ? "dark-style" : "light-style",
   elementsConfig: {
     labelWidth: 200,
     // labelAlign: "right",
@@ -56,8 +55,6 @@ const notificationSettings = (theme) => ({
 
 export default class NotificationsView extends JetView {
   config() {
-    const theme = webix.storage.local.get("theme") || "default";
-    console.log("theme", theme);
     return {
       template: "Notification settings",
       type: "space",
@@ -65,9 +62,8 @@ export default class NotificationsView extends JetView {
         {
           view: "toolbar",
           cols: [{ view: "label", label: "Notification Settings" }],
-          css: theme,
         },
-        notificationSettings(theme),
+        notificationSettings(),
       ],
     };
   }

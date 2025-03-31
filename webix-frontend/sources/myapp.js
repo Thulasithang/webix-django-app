@@ -28,9 +28,9 @@ export default class MyApp extends JetApp {
   constructor(config) {
     let theme = webix.storage.local.get("theme") || "webix_dark";
     const size = () => {
-			const screen = document.body.offsetWidth;
-			return screen > 1210 ? "wide" : (screen > 1060 ? "mid" : "small");
-		};
+      const screen = document.body.offsetWidth;
+      return screen > 1210 ? "wide" : (screen > 1060 ? "mid" : "small");
+    };
 
     const defaults = {
       id: import.meta.env.VITE_APPNAME,
@@ -47,12 +47,13 @@ export default class MyApp extends JetApp {
     };
 
     super({ ...defaults, ...config });
-
+    // super({ ...defaults, ...config });
+    this.applyTheme(theme);
     this.config.theme = theme;
-    this.setTheme = (theme) => {
-      this.config.theme = theme;
-      this.refresh();
-    };
+    // this.setTheme = (theme) => {
+    //   this.config.theme = theme;
+    //   this.refresh();
+    // };
 
     // locales plugin, optional
     this.use(plugins.Locale, {
@@ -72,7 +73,25 @@ export default class MyApp extends JetApp {
 
     setTheme(theme) {
       webix.storage.local.put("theme", theme);
+      this.config.theme = theme;
+      this.applyTheme(theme);
       this.app.refresh();
+    }
+
+    applyTheme(theme) {
+     let themeLink = document.getElementById("themeStylesheet");
+     if (!themeLink) {
+      themeLink = document.createElement("link");
+      themeLink.id = "themeStylesheet";
+      themeLink.rel = "stylesheet";
+      themeLink.type = "text/css";
+      document.head.appendChild(themeLink);
+     }
+
+     themeLink.href = 
+        theme === "contrast" ?
+         "https://cdn.webix.com/edge/skins/dark.css" :
+          `https://cdn.webix.com/edge/skins/${theme}.css`;
     }
     
 }

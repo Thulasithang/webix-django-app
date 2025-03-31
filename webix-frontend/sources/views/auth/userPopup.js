@@ -21,6 +21,7 @@ export default class UserPopupView extends JetView {
 					onItemClick:id => {
 						if (id === "logout"){
                             webix.storage.local.remove("user");
+							webix.storage.local.remove("user_preferences");
                             webix.message("Logged out successfully");
 							this.getRoot().hide();
 

@@ -41,13 +41,13 @@ function saveSettings(user_id) {
 const accountSettings = (theme, user) => ({
   view: "form",
   id: "accountForm",
-  css: theme === "webix_dark" ? "dark-style" : "light-style",
+  // css: theme === "webix_dark" ? "dark-style" : "light-style",
   elementsConfig: {
     labelWidth: 200,
     labelAlign: "left",
     labelPosition: "top",
     labelHeight: 100,
-    css: { fontSize: "24px !important", color: "#fff" },
+    // css: { fontSize: "24px !important", color: "#fff" },
   },
   cols: [
     {
@@ -105,7 +105,7 @@ export default class AccountsView extends JetView {
         {
           view: "toolbar",
           cols: [{ view: "label", label: "Notification Settings" }],
-          css: theme,
+          // css: theme,
         },
         accountSettings(theme, user)],
     };

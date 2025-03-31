@@ -63,46 +63,46 @@
 	color:green;
 }
 
-@media (max-width: 600px) { /* Small screens */
-    .webix_input, .webix_el_box {
-        font-size: 32px !important;
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) { /* Medium screens */
-    .webix_input, .webix_el_box {
-        font-size: 18px !important;
-    }
-    .webix_label {
-        font-size: 32px !important;
-    }
-}
-
-@media (min-width: 1025px) { /* Large screens */
-    .webix_input, .webix_el_box {
-        font-size: 18px !important;
-    }
-}
-
-.responsive-text {
-    font-size: 32px;
-}
-
-@media (min-width: 600px) {
-    .responsive-text {
-        font-size: 72px;
-    }
-}
 
 
 /*login form*/
-.invalid_login .webix_header > div{
-    background: #FC3636;
-    transition: background 1s;
+.webix_login_form{
+    /* width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.invalid_login{
-    -webkit-animation: formshake .5s linear;
+.webix_login_form .webix_inp_top_label{
+    font-size: 18px;
+    /* color: #333; */
+    margin-bottom: 10px;
 }
+
+/* .webix_login_form .webix_el_button{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.webix_login_form .webix_el_button:hover{
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+.webix_login_form .webix_el_button:active{
+    background-color: #004085;
+    transform: scale(0.95);
+} */
+
+
+
+
 @-webkit-keyframes formshake {
     8%, 41% {
         -webkit-transform: translateX(-10px);
