@@ -42,6 +42,14 @@ export const signupView = () => {
       view: "form",
       css: "webix_login_form",
       width: 400,
+      // height: 400,
+      borderless: true,
+      elementsConfig: {
+        labelWidth: 200,
+      labelAlign: "left",
+      labelPosition: "top",
+      labelHeight: 100,
+      },
       elements: [
         {
           view: "icon",
@@ -69,6 +77,7 @@ export const signupView = () => {
           value: "Sign Up",
           css: "webix_primary",
           click: () => signup(),
+          hotkey: "enter",
         },
         {
           cols: [
@@ -81,6 +90,7 @@ export const signupView = () => {
                 // $$("loginView").clear();
                 // $$("loginView").show();
               },
+              hotkey: "left",
             },
           ],
         },

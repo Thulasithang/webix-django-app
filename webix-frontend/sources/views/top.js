@@ -51,7 +51,7 @@ export default class TopView extends JetView {
       tooltip: (obj) => {
         return this.getRoot().config.collapsed ? obj.value : "";
       },
-      css: theme,
+      // css: theme,
       minWidth: 150,
       layout: "y",
       select: true,
@@ -102,7 +102,7 @@ export default class TopView extends JetView {
 
     const toolbar = {
       view: "toolbar",
-      css: theme,
+      // css: theme,
       padding: 10,
       height: 58,
       cols: [

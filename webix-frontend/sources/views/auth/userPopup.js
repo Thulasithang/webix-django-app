@@ -13,8 +13,8 @@ export default class UserPopupView extends JetView {
 				borderless:true,
 				css:"profile_menu",
 				data:[
-					{ id:"profile", value:"My profile", icon:"mdi mdi-account" },
-					{ id:"dashboard", value:"My dashboard", icon:"mdi mdi-view-dashboard" },
+					// { id:"profile", value:"My profile", icon:"mdi mdi-account" },
+					// { id:"dashboard", value:"My dashboard", icon:"mdi mdi-view-dashboard" },
 					{ id:"logout", value:"Log out", icon:"mdi mdi-logout" }
 				],
 				on:{

@@ -8,8 +8,10 @@ export default class HomeView extends JetView {
     return {
       view: "layout",
       type: "space",
+      id: "a1",
       css: "home-container",
-      responsive: "a1",
+      responsive: true,
+      // scrollY: true,
       rows: [
         // Hero Section
         {
@@ -19,7 +21,7 @@ export default class HomeView extends JetView {
             {
               id: "hero-text",
               rows: [
-                { minHeight: 50 },
+                // { minHeight: 50 },
                 {
                   template: "<div class='hero-title'>Welcome to MyApp</div>",
                   css: "fade-in",
@@ -42,12 +44,22 @@ export default class HomeView extends JetView {
                   // borderless: true,
                   // height: 50,
                   view: "button",
+                  tooltip: "Ctrl+alt+D",
                   template:
-                    "<button class='animated-button'>Get Started</button>",
+                    "<button class='animated-button' webix_tooltip=\"Ctrl+alt+D\">Get Started</button>",
                   borderless: true,
                   height: 100,
                   minHeight: 80,
                 },
+                {
+                  template: "<div class='hero-subtitle'>Join us today!</div>",
+                  css: "fade-in",
+                  borderless: true,
+                  minHeight: 50,
+                },
+                {
+
+                }
                 // {}
               ],
               padding: 30,
@@ -60,6 +72,7 @@ export default class HomeView extends JetView {
 
             // Right Side: Hero Image
             {
+              // responsive: "a1",
               //   responsiveCell: true,
               template:
                 "<img src='https://picsum.photos/seed/picsum/600/400' class='hero-image' />",

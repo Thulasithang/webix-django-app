@@ -27,7 +27,7 @@ const words = (name) =>
 export default class MyApp extends JetApp {
   constructor(config) {
     let userPreferences = webix.storage.local.get("user_preferences") || {};
-    let theme = userPreferences.theme || "light";
+    let theme = userPreferences.theme === "webix_dark" ? "dark" : userPreferences.theme || "light";
     let font_style = userPreferences.font_style || "Times New Roman";
     let font_size = userPreferences.font_size || "16px";
     const size = () => {
@@ -74,6 +74,7 @@ export default class MyApp extends JetApp {
 
     webix.event(window, "resize", () => {
       const newSize = size();
+      // $$("layout").resize();
       if (newSize != this.config.size) {
         this.config.size = newSize;
         this.refresh();
@@ -89,6 +90,7 @@ export default class MyApp extends JetApp {
   }
 
   applyTheme(theme) {
+    console.log("Theme from applyTheme", theme);
     let themeLink = document.getElementById("themeStylesheet");
     if (!themeLink) {
       themeLink = document.createElement("link");

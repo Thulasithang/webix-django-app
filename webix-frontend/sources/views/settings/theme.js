@@ -17,7 +17,7 @@ const themeSettings = (theme, toggleTheme) => ({
           options: [
             { id: "light", value: "Default" },
             // { id:"flat-shady", value:"Shady" },
-            { id: "contrast", value: "Compact" },
+            { id: "contrast", value: "Contrast" },
             { id: "dark", value: "Dark" },
           ],
           on: {
@@ -58,7 +58,9 @@ const fontStyleSettings = (font_style, toggleFontStyle) => ({
 
 export default class ThemeView extends JetView {
   config() {
-    const theme = this.app.config.theme;
+    const theme = this.app.config.theme === "webix_dark" ? "dark" : this.app.config.theme || "light";
+    // const userPreferences = webix.storage.local.get("user_preferences") || {};
+    // const theme = userPreferences.theme === "webix_dark" ? "dark" : userPreferences.theme || "light";
     console.log("theme from theme", theme);
 
     const toggleTheme = (newTheme) => {

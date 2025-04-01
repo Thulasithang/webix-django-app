@@ -86,8 +86,7 @@ export const loginView = () => {
       labelWidth: 200,
       labelAlign: "left",
       labelPosition: "top",
-      labelHeight: 100,
-      css: { fontSize: "24px !important", color: "#fff" },
+      // labelHeight: 100,
       // height: 70,
     },
     // on: {
@@ -134,6 +133,7 @@ export const loginView = () => {
               console.log("login clicked");
               doLogin();
             },
+            hotkey: "enter",
             attributes: {
               "aria-label": "Login",
               "aria-describedby": "loginView",
@@ -156,6 +156,7 @@ export const loginView = () => {
             click: () => {
               $$("dataMultiview").setValue("signupView");
             },
+            hotkey: "right",
           },
         ],
       },

@@ -10,6 +10,8 @@
 
 .webix_auth_multiview {
     width: 100%;
+    min-width: 400px;
+    max-width: 600px;
     height: 100%;
     display: flex !important;
     flex-direction: column !important;
@@ -30,6 +32,8 @@
     width: 100%;
     margin: 0 auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    /* padding: 20px; */
 }
 .webix_login_form.webix_view.webix_form {
     /* background-color: green; */
@@ -41,5 +45,13 @@
     font-size: 18px;
     /* color: #333; */
     margin-bottom: 10px;
+}
+
+.webix_login_form.webix_el_box {
+    width: 100%;
+    margin: 0 auto;
+    /* padding: 20px; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

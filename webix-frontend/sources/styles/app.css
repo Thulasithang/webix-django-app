@@ -11,6 +11,10 @@
     width: 100%;
 }
 
+body.webix_full_screen {
+    overflow: auto;
+}
+
 /* dark mode */
 .webix_dark {
     --bg-color: #222222;
@@ -129,6 +133,7 @@
     width: 100%;
     justify-content: center;
     height: 100vh;
+    overflow:  !important;
 }
 
 .hero-title {

@@ -51,7 +51,7 @@ const accountSettings = (user) => ({
   cols: [
     {
       rows: [
-        { view: "text", label: "Username", name: "username", value: user.username, required: true },
+        { view: "text", label: "Username", name: "username", value: user.username, required: true, minWidth: 400 },
         { view: "text", label: "First name", name: "firstname", value: user.first_name, required: false },
         { view: "text", label: "Last name", name: "lastname", value: user.last_name, required: false },
 
@@ -102,7 +102,7 @@ export default class AccountsView extends JetView {
       rows: [
         {
           view: "toolbar",
-          cols: [{ view: "label", label: "Notification Settings" }],
+          cols: [{ view: "label", label: "Account Settings" }],
         },
         accountSettings(user)],
     };
